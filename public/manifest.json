@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "React Chrome Extension",
+  "version": "0.1.0",
+  "description": "A simple React app as Chrome extension",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["activeTab"],
+  "host_permissions": ["http://localhost:8080"]
+}
