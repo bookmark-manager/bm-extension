@@ -10,6 +10,6 @@ export const deleteBookmark = async (id: number) => {
 
   if (!resp.ok) {
     const errData = await resp.json();
-    throw errData.error || new Error('Failed to delete bookmark');
+    throw new Error(errData.error || 'Failed to delete bookmark');
   }
 };

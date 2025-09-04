@@ -4,4 +4,17 @@ import react from '@vitejs/plugin-react';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        popup: './index.html',
+        background: './src/background.ts',
+      },
+      output: {
+        entryFileNames: chunkInfo => {
+          return chunkInfo.name === 'background' ? 'background.js' : '[name].[hash].js';
+        },
+      },
+    },
+  },
 });

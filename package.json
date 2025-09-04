@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:chrome": "vite build && cp manifest.chrome.json dist/manifest.json",
+    "build:firefox": "vite build && cp manifest.firefox.json dist/manifest.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@types/chrome": "^0.1.5",
+    "@types/node": "^24.3.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",

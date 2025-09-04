@@ -5,6 +5,7 @@ import { BookmarkForm } from './components/BookmarkForm';
 import { useForm } from '@mantine/form';
 import { useCheckForBookmark, useCreateBookmark } from './hooks/useBookmarksQuery';
 import { AlreadyExists } from './components/AlreadyExists';
+import { getCurrentTab } from './utils/get-current-tab';
 
 function App() {
   const [error, setError] = useState<Error>();
@@ -17,22 +18,15 @@ function App() {
   });
 
   useEffect(() => {
-    if (typeof chrome !== 'undefined' && chrome.tabs) {
-      chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-        if (chrome?.runtime.lastError) {
-          setError(new Error(chrome.runtime.lastError.message));
-          return;
-        }
-
-        const currentTab = tabs[0];
+    getCurrentTab()
+      .then(currentTab =>
         form.setValues({
           url: currentTab.url || '',
           title: currentTab.title || '',
-        });
-      });
-    } else {
-      setError(new Error('Chrome API is not available'));
-    }
+        }),
+      )
+      .catch(err => setError(err));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,12 +43,14 @@ function App() {
     error: createError,
   } = useCreateBookmark();
 
-  if (isCheckError) {
-    setError(checkError);
-  }
-  if (isCreateError) {
-    setError(createError);
-  }
+  useEffect(() => {
+    if (isCheckError) {
+      setError(checkError);
+    }
+    if (isCreateError) {
+      setError(createError);
+    }
+  }, [isCheckError, isCreateError, checkError, createError]);
 
   if (isSuccess) {
     close();

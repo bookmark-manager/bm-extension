@@ -22,7 +22,7 @@ importers:
         version: 19.1.1(react@19.1.1)
       vite-plugin-static-copy:
         specifier: ^3.1.2
-        version: 3.1.2(vite@7.1.4)
+        version: 3.1.2(vite@7.1.4(@types/node@24.3.1))
     devDependencies:
       '@eslint/js':
         specifier: ^9.33.0
@@ -30,6 +30,9 @@ importers:
       '@types/chrome':
         specifier: ^0.1.5
         version: 0.1.5
+      '@types/node':
+        specifier: ^24.3.1
+        version: 24.3.1
       '@types/react':
         specifier: ^19.1.10
         version: 19.1.12
@@ -38,7 +41,7 @@ importers:
         version: 19.1.9(@types/react@19.1.12)
       '@vitejs/plugin-react':
         specifier: ^5.0.0
-        version: 5.0.2(vite@7.1.4)
+        version: 5.0.2(vite@7.1.4(@types/node@24.3.1))
       eslint:
         specifier: ^9.33.0
         version: 9.34.0
@@ -59,7 +62,7 @@ importers:
         version: 8.42.0(eslint@9.34.0)(typescript@5.8.3)
       vite:
         specifier: ^7.1.2
-        version: 7.1.4
+        version: 7.1.4(@types/node@24.3.1)
 
 packages:
 
@@ -539,6 +542,9 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/node@24.3.1':
+    resolution: {integrity: sha512-3vXmQDXy+woz+gnrTvuvNrPzekOi+Ds0ReMxw0LzBiK3a+1k0kQn9f2NWk+lgD4rJehFUmYy2gMhJ2ZI+7YP9g==}
 
   '@types/react-dom@19.1.9':
     resolution: {integrity: sha512-qXRuZaOsAdXKFyOhRBg6Lqqc0yay13vN7KrIg4L7N4aaHN68ma9OK3NE1BoDFgFOTfM7zg+3/8+2n8rLUH3OKQ==}
@@ -1125,6 +1131,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  undici-types@7.10.0:
+    resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
+
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
@@ -1596,6 +1605,10 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
+  '@types/node@24.3.1':
+    dependencies:
+      undici-types: 7.10.0
+
   '@types/react-dom@19.1.9(@types/react@19.1.12)':
     dependencies:
       '@types/react': 19.1.12
@@ -1697,7 +1710,7 @@ snapshots:
       '@typescript-eslint/types': 8.42.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitejs/plugin-react@5.0.2(vite@7.1.4)':
+  '@vitejs/plugin-react@5.0.2(vite@7.1.4(@types/node@24.3.1))':
     dependencies:
       '@babel/core': 7.28.3
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.3)
@@ -1705,7 +1718,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.34
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 7.1.4
+      vite: 7.1.4(@types/node@24.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -2219,6 +2232,8 @@ snapshots:
 
   typescript@5.8.3: {}
 
+  undici-types@7.10.0: {}
+
   universalify@2.0.1: {}
 
   update-browserslist-db@1.1.3(browserslist@4.25.4):
@@ -2231,16 +2246,16 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-static-copy@3.1.2(vite@7.1.4):
+  vite-plugin-static-copy@3.1.2(vite@7.1.4(@types/node@24.3.1)):
     dependencies:
       chokidar: 3.6.0
       fs-extra: 11.3.1
       p-map: 7.0.3
       picocolors: 1.1.1
       tinyglobby: 0.2.14
-      vite: 7.1.4
+      vite: 7.1.4(@types/node@24.3.1)
 
-  vite@7.1.4:
+  vite@7.1.4(@types/node@24.3.1):
     dependencies:
       esbuild: 0.25.9
       fdir: 6.5.0(picomatch@4.0.3)
@@ -2249,6 +2264,7 @@ snapshots:
       rollup: 4.50.0
       tinyglobby: 0.2.14
     optionalDependencies:
+      '@types/node': 24.3.1
       fsevents: 2.3.3
 
   which@2.0.2:
