@@ -1,0 +1,12 @@
+.btn {
+  padding: 0.4rem 0.6rem;
+  background-color: #0e0e0e;
+  border-radius: 6px;
+  color: #fff;
+  outline: none;
+  border: none;
+
+  &:active {
+    scale: 0.97;
+  }
+}

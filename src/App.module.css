@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+
+  .errorSection {
+    font-size: 0.75rem;
+    padding: 0.8rem;
+    background-color: rgba(255, 0, 0, 0.137);
+    border: 1px solid rgba(255, 0, 0, 0.705);
+    border-radius: 10px;
+  }
+}
