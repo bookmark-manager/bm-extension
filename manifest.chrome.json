@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "React Chrome Extension",
+  "name": "Bookmark Chrome Extension",
   "version": "0.1.0",
-  "description": "A simple React app as Chrome extension",
+  "description": "A simple chrome extension for work with bookmark manager app",
   "icons": {
     "16": "icons/inactive-16.png",
     "32": "icons/inactive-32.png",

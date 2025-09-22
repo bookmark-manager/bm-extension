@@ -1,10 +1,7 @@
 import { getBookmarksApiUrl } from './urls';
 
 export const deleteBookmark = async (id: number) => {
-  const url = getBookmarksApiUrl();
-  const params = url.searchParams;
-
-  params.set('id', id.toString());
+  const url = `${getBookmarksApiUrl()}/${id}`;
 
   const resp = await fetch(url, { method: 'DELETE' });
 
