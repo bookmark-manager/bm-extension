@@ -1,69 +1,156 @@
-# React + TypeScript + Vite
+# 🔖 Bookmark Manager Browser Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight browser extension for Chrome and Firefox that seamlessly integrates with the Bookmark Manager API, allowing you to save and manage bookmarks directly from your browser.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **One-Click Bookmarking** - Save current page with a single click
+- **Smart Detection** - Visual indicators when a page is already bookmarked
+- **Dynamic Icons** - Extension icon changes based on bookmark status
+- **Auto-Fill Forms** - Automatically fills title and URL from current tab
+- **Duplicate Prevention** - Prevents saving duplicate bookmarks
+- **Cross-Browser Support** - Works on both Chrome and Firefox
+- **Real-time Sync** - Instant updates with the backend API
+- **Minimal UI** - Clean, unobtrusive popup interface
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite 7
+- **State Management**: TanStack Query (React Query)
+- **Form Handling**: Mantine Form
+- **Browser APIs**: Chrome Extension API / WebExtensions
+- **Styling**: CSS Modules
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18+ and pnpm
+- Running Bookmark Manager API backend
+- Chrome or Firefox browser
+
+### Development Setup
+
+1. **Clone and install dependencies**
+
+   ```bash
+   git clone <repository-url>
+   cd bookmark-manager-extension
+   pnpm install
+   ```
+
+2. **Configure environment**
+
+   ```bash
+   # Create .env file
+   echo "VITE_BASE_URL=http://localhost:8080/api/v1" > .env
+   ```
+
+3. **Build for your browser**
+
+   ```bash
+   # For Chrome
+   pnpm run build:chrome
+
+   # For Firefox
+   pnpm run build:firefox
+   ```
+
+4. **Load extension in browser**
+
+   **Chrome:**
+
+   - Open `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select the `dist` folder
+
+   **Firefox:**
+
+   - Open `about:debugging`
+   - Click "This Firefox"
+   - Click "Load Temporary Add-on"
+   - Select `manifest.json` from `dist` folder
+
+### Production Build
+
+```bash
+# Build for Chrome
+pnpm run build:chrome
+
+# Build for Firefox
+pnpm run build:firefox
+
+# Development build with hot reload
+pnpm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📋 Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command         | Description                 |
+| --------------- | --------------------------- |
+| `dev`           | Start development server    |
+| `build`         | Build extension (generic)   |
+| `build:chrome`  | Build with Chrome manifest  |
+| `build:firefox` | Build with Firefox manifest |
+| `lint`          | Run ESLint                  |
+| `preview`       | Preview production build    |
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env` file:
+
+```env
+# Backend API base URL
+VITE_BASE_URL=http://localhost:8080/api/v1
 ```
+
+### API Integration
+
+The extension connects to these backend endpoints:
+
+- `POST /api/v1/bookmarks` - Create bookmark
+- `GET /api/v1/bookmarks/exists` - Check if bookmark exists
+- `DELETE /api/v1/bookmarks/:id` - Remove bookmark
+
+## 🎯 How It Works
+
+### Core Functionality
+
+1. **Icon States**: Extension icon changes color based on bookmark status
+
+   - **Inactive** (gray): Current page not bookmarked
+   - **Active** (colored): Current page is bookmarked
+
+2. **Background Script**: Monitors tab changes and updates icon state automatically
+
+3. **Popup Interface**:
+   - Shows bookmark form for new pages
+   - Shows removal option for existing bookmarks
+   - Auto-fills title and URL from current tab
+
+### User Flow
+
+1. User navigates to a webpage
+2. Extension checks if page is already bookmarked
+3. Icon updates to reflect bookmark status
+4. User clicks extension icon to open popup
+5. If not bookmarked: Shows form to add bookmark
+6. If bookmarked: Shows option to remove bookmark
+
+## 📦 Distribution
+
+### Chrome Web Store
+
+1. Build with `pnpm run build:chrome`
+2. Zip the `dist` folder
+3. Upload to Chrome Web Store Developer Dashboard
+
+### Firefox Add-ons
+
+1. Build with `pnpm run build:firefox`
+2. Zip the `dist` folder
+3. Submit to Firefox Add-on Developer Hub
