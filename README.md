@@ -35,7 +35,7 @@ A lightweight browser extension for Chrome and Firefox that seamlessly integrate
 1. **Clone and install dependencies**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/bookmark-manager/bm-extension.git
    cd bookmark-manager-extension
    pnpm install
    ```
